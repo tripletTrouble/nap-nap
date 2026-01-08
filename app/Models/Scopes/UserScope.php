@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,8 +20,9 @@ class UserScope implements Scope
          */
         $user = auth()->user();
 
-        if ($user) {
+        if ($user && !$user->roles()->where('name', RoleEnum::ADMIN)->exists()) {
             $builder->where('user_id', $user->id);
+            return;
         }
     }
 }
