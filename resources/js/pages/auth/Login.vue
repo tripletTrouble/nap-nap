@@ -11,21 +11,41 @@ import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
 
-defineProps<{
+const props =defineProps<{
     status?: string;
     canResetPassword: boolean;
     canRegister: boolean;
+    error?: string;
 }>();
+const errorMessage = ref<string | null>(null);
+
+watch(
+    () => props.error,
+    (newError) => {
+        errorMessage.value = newError ?? null;
+    },
+    { immediate: true }
+);
 </script>
 
 <template>
+    <div v-if="errorMessage" class="w-screen h-screen flex justify-center items-center">
+        <div class="p-8 rounded-lg shadow-md max-w-md w-full text-center border">
+            <h2 class="text-2xl font-bold mb-4 text-red-600">Gagal Masuk</h2>
+            <p class="mb-6">{{ errorMessage }}</p>
+            <Button @click="errorMessage = null" class="w-full">
+                Ok, mengerti
+            </Button>
+        </div>
+    </div>
     <AuthBase
         title="Log in to your account"
         description="Enter your email and password below to log in"
+        v-else
     >
         <Head title="Log in" />
-
         <div
             v-if="status"
             class="mb-4 text-center text-sm font-medium text-green-600"

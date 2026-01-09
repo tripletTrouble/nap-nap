@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useInitials } from '@/composables/useInitials';
-import type { User } from '@/types';
+import type { Store, User } from '@/types';
 import { computed } from 'vue';
 
 interface Props {
     user: User;
     showEmail?: boolean;
+    store?: Store;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,8 +32,8 @@ const showAvatar = computed(
 
     <div class="grid flex-1 text-left text-sm leading-tight">
         <span class="truncate font-medium">{{ user.name }}</span>
-        <span v-if="showEmail" class="truncate text-xs text-muted-foreground">{{
-            user.email
+        <span class="truncate text-xs text-muted-foreground">{{
+            store ? store.name : '-'
         }}</span>
     </div>
 </template>

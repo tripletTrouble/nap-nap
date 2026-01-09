@@ -29,7 +29,7 @@ class LoginListener
             $store = $user->stores()->first();
 
             if ($store) {
-                session(['store_id' => $store->id]);
+                session(['store' => $store]);
             }
         }
     }

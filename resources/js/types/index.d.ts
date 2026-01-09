@@ -24,8 +24,18 @@ export type AppPageProps<
     quote: { message: string; author: string };
     auth: Auth;
     sidebarOpen: boolean;
-    store_id?: number;
+    store?: Store;
 };
+
+export interface Store {
+    id: number;
+    name: string;
+    tagline: string;
+    code: string;
+    address: string;
+    created_at: string;
+    updated_at: string;
+}
 
 export interface User {
     id: number;
@@ -33,8 +43,39 @@ export interface User {
     email: string;
     avatar?: string;
     email_verified_at: string | null;
+    deleted_at: string | null;
     created_at: string;
     updated_at: string;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
+export interface LaravelPaginationMeta {
+    current_page: number;
+    from: number | null;
+    last_page: number;
+    links: PaginationLink[];
+    path: string;
+    per_page: number;
+    to: number | null;
+    total: number;
+}
+
+export interface LaravelPaginationLinks {
+    first: string | null;
+    last: string | null;
+    prev: string | null;
+    next: string | null;
+}
+
+export type Paginated<T> = {
+    data: T[];
+    meta: LaravelPaginationMeta;
+    links: LaravelPaginationLinks;
+};
