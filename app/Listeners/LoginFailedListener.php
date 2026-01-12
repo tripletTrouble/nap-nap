@@ -28,7 +28,7 @@ class LoginFailedListener
         $user = User::withTrashed()->where('email', $credentials['email'])->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            session()->flash('error', value: 'Your account has been deactivated. Please contact support for assistance.');
+            session()->flash('error', value: 'Akun Anda ditangguhkan. Silakan hubungi administrator untuk informasi lebih lanjut.');
         }
     }
 }

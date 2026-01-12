@@ -35,7 +35,7 @@ watch(
         <div class="p-8 rounded-lg shadow-md max-w-md w-full text-center border">
             <h2 class="text-2xl font-bold mb-4 text-red-600">Gagal Masuk</h2>
             <p class="mb-6">{{ errorMessage }}</p>
-            <Button @click="errorMessage = null" class="w-full">
+            <Button @click="errorMessage = null" class="w-full" variant="outline">
                 Ok, mengerti
             </Button>
         </div>
