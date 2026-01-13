@@ -21,8 +21,16 @@ class UserScope implements Scope
         $user = auth()->user();
 
         if ($user && !$user->roles()->where('name', RoleEnum::ADMIN)->exists()) {
-            $builder->where('user_id', $user->id);
-            return;
+            if (method_exists($model, 'users')) {
+                $builder->whereHas('users', function (Builder $query) use ($user) {
+                    $query->where('users.id', $user->id);
+                });
+            } else {
+                // If the model does not have a 'users' relationship, restrict all results
+                $builder->whereHas('user', function (Builder $query) use ($user) {
+                    $query->where('users.id', $user->id);
+                });
+            }
         }
     }
 }

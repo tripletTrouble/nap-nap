@@ -29,8 +29,16 @@ class LoginListener
             $store = $user->stores()->first();
 
             if ($store) {
+                // Set store in session
                 session(['store' => $store]);
             }
+
+            // Set role in session
+            session(['role' => 'user']);
+            return;
         }
+
+        session(['role' => 'admin']);
+        return;
     }
 }
