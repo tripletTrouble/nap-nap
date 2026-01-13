@@ -19,7 +19,7 @@ const page = usePage();
 </script>
 
 <template>
-    <SidebarGroup class="px-2 py-0">
+    <SidebarGroup class="px-2 py-0" v-if="items.some((item) => item.isVisible?.value === true)">
         <SidebarGroupLabel v-if="label">{{ label }}</SidebarGroupLabel>
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
@@ -27,6 +27,7 @@ const page = usePage();
                     as-child
                     :is-active="urlIsActive(item.href, page.url)"
                     :tooltip="item.title"
+                    v-if="item.isVisible?.value"
                 >
                     <Link :href="item.href">
                         <component :is="item.icon" />

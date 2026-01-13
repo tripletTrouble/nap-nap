@@ -13,17 +13,21 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { Cog, FileSpreadsheet, LayoutGrid, NotepadText, UserSearch } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import users from '@/routes/users';
 import store from '@/routes/store';
+import { computed } from 'vue';
+
+const page = usePage();
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+        isVisible: computed(() => true),
     },
 ];
 
@@ -32,16 +36,19 @@ const storeNavItems: NavItem[] = [
         title: 'Informasi toko',
         href: store.edit().url,
         icon: NotepadText,
+        isVisible: computed(() => true),
     },
     {
         title: 'Setelan toko',
         href: store.settings.index().url,
         icon: Cog,
+        isVisible: computed(() => true),
     },
     {
         title: 'Produk',
         href: '#',
         icon: FileSpreadsheet,
+        isVisible: computed(() => page.props.auth.can?.manageProducts ?? false),
     },
 ];
 

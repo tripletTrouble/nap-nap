@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware
         $can = $request->user() ? [
             'manageUsers' => Gate::allows('manageUsers'),
             'updateStore' => $request->user()->can('update', session('store')),
+            'manageProducts' => $request->user()->can('create', \App\Models\Product::class),
         ] : [];
 
         return [

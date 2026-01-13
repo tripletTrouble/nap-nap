@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Scopes\UserScope;
+use App\Observers\StoreObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +12,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 #[ScopedBy(UserScope::class)]
+#[ObservedBy(StoreObserver::class)]
 class Store extends Model implements HasMedia
 {
     use InteractsWithMedia, SoftDeletes;

@@ -26,7 +26,7 @@ class LoginListener
             /**
              * @var Store
              */
-            $store = $user->stores()->first();
+            $store = $user->stores()->with('settings')->first();
 
             if ($store) {
                 // Set store in session

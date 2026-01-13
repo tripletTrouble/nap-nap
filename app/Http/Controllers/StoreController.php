@@ -28,8 +28,6 @@ class StoreController extends Controller
         $store->code = $data['code'];
         $store->save();
 
-        session(['store' => $store]);
-
         Inertia::flash('success', 'Informasi toko berhasil diperbarui.');
 
         return back();
