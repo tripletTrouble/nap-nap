@@ -30,4 +30,9 @@ class Store extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function settings()
+    {
+        return $this->hasMany(StoreSetting::class);
+    }
 }

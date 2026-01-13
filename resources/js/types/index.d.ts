@@ -49,6 +49,15 @@ export interface User {
     updated_at: string;
 }
 
+export interface StoreSetting {
+    id: number;
+    store_id: number;
+    key: string;
+    value: string;
+    created_at: string;
+    updated_at: string;
+}
+
 export type BreadcrumbItemType = BreadcrumbItem;
 
 export interface PaginationLink {

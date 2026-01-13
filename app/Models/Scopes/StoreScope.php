@@ -13,10 +13,10 @@ class StoreScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $storeId = session('store_id');
+        $store = session('store');
 
-        if ($storeId) {
-            $builder->where('store_id', $storeId);
+        if ($store) {
+            $builder->where('store_id', $store->id);
         }
     }
 }

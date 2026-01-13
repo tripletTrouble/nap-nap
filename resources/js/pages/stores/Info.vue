@@ -46,7 +46,7 @@ const handleSave = () => {
         <CardDescription>Kelola informasi tokomu di sini</CardDescription>
       </CardHeader>
       <CardContent>
-        <div class="grid grid-cols-1 gap-5">
+        <div class="grid grid-cols-1 xl:grid-cols-2 items-start gap-5">
           <div class="grid space-y-2">
             <Label for="name">Nama toko</Label>
             <Input type="text" id="name" placeholder="Nama toko" v-model="form.name" />

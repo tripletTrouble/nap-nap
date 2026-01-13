@@ -14,7 +14,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { Database, FileSpreadsheet, LayoutGrid, NotepadText, UserSearch } from 'lucide-vue-next';
+import { Cog, FileSpreadsheet, LayoutGrid, NotepadText, UserSearch } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import users from '@/routes/users';
 import store from '@/routes/store';
@@ -34,9 +34,9 @@ const storeNavItems: NavItem[] = [
         icon: NotepadText,
     },
     {
-        title: 'Master data',
-        href: '#',
-        icon: Database,
+        title: 'Setelan toko',
+        href: store.settings.index().url,
+        icon: Cog,
     },
     {
         title: 'Produk',
